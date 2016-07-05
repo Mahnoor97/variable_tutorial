@@ -4,14 +4,6 @@ Window *window;
 TextLayer *text_layer;
 
 /*
-char *alphabet[] = {
-	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", 
-	"m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
-};
-
-static char buffer[] = "Our variable is 0";
-	snprintf(buffer, sizeof(buffer), "Our variable is %d", our_variable);
-	text_layer_set_text(text_layer, buffer);
 */
 
 
@@ -20,21 +12,25 @@ static char buffer[] = "Our variable is 0";
 
 
 
+int our_variable = 0;
 
-
-
-
+char *alphabet[] = {
+	"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+	"m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+};
 
 void select_click_handler(ClickRecognizerRef recognizer, void *context) {
-	
+	static char buffer[] = "Our letter is a";
+	snprintf(buffer, sizeof(buffer), "Our letter is %s", alphabet[our_variable]);
+	text_layer_set_text(text_layer, buffer);
 }
 
 void up_click_handler(ClickRecognizerRef recognizer, void *context) {
-
+	our_variable++;
 }
 
 void down_click_handler(ClickRecognizerRef recognizer, void *context) {
-
+	our_variable--;
 }
 
 
